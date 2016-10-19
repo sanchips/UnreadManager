@@ -13,7 +13,7 @@ UnreadManager是一个未读消息管理系统，用于在软件中管理添加�
     - 添加数字角标：`UnreadMgr.getInstance().addNumUnread(Constant.LOOKED_ME);`
     - 添加文字角标：`UnreadMgr.getInstance().addStringUnread(Constant.NEWS, "Hot news!");`
 
-<iframe src="./screenshot/record.mp4" frameborder=0 allowfullscreen/>
+<video src="./screenshot/record.mp4" controls="controls">Your browser does not support the video tag.</video>
 
 技术渣，欢迎PR和ISSUES。
 
