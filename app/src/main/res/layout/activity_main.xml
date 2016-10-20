@@ -11,52 +11,128 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.zrp.unreadmanager.MainActivity">
 
-    <Button
-        android:id="@+id/message"
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MESSAGE" />
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/looked_me"
+        <Button
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MESSAGE" />
+
+        <com.zrp.library.other.BadgeView
+            android:id="@+id/message_badge"
+            style="@style/badge"
+            android:layout_toRightOf="@+id/message" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/horizontal_margin"
-        android:text="LOOKED_ME" />
+        android:layout_marginTop="@dimen/activity_vertical_margin">
 
-    <Button
-        android:id="@+id/recent_message"
+        <Button
+            android:id="@+id/looked_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LOOKED_ME" />
+
+        <com.zrp.library.other.BadgeView
+            android:id="@+id/looked_me_badge"
+            style="@style/badge"
+            android:layout_toRightOf="@+id/looked_me" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/horizontal_margin"
-        android:text="RECENT_MESSAGE" />
+        android:layout_marginTop="@dimen/activity_vertical_margin">
 
-    <Button
-        android:id="@+id/friends"
+        <Button
+            android:id="@+id/recent_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RECENT_MESSAGE" />
+
+        <com.zrp.library.other.BadgeView
+            android:id="@+id/recent_message_badge"
+            style="@style/badge"
+            android:layout_toRightOf="@+id/recent_message" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/horizontal_margin_2"
-        android:text="FRIENDS" />
+        android:layout_marginTop="@dimen/activity_vertical_margin">
 
-    <Button
-        android:id="@+id/strangers"
+        <Button
+            android:id="@+id/friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FRIENDS" />
+
+        <com.zrp.library.other.BadgeView
+            android:id="@+id/friends_badge"
+            style="@style/badge"
+            android:layout_toRightOf="@+id/friends" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/horizontal_margin_2"
-        android:text="STRANGERS" />
+        android:layout_marginTop="@dimen/activity_vertical_margin">
 
-    <Button
-        android:id="@+id/news"
+        <Button
+            android:id="@+id/strangers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="STRANGERS" />
+
+        <com.zrp.library.other.BadgeView
+            android:id="@+id/strangers_badge"
+            style="@style/badge"
+            android:layout_toRightOf="@+id/strangers" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/horizontal_margin_2"
-        android:text="NEWS" />
+        android:layout_marginTop="@dimen/activity_vertical_margin">
 
-    <Button
-        android:id="@+id/hots"
+        <Button
+            android:id="@+id/news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NEWS" />
+
+        <com.zrp.library.other.BadgeView
+            android:id="@+id/news_badge"
+            style="@style/badge"
+            android:layout_toRightOf="@+id/news" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HOTS" />
+        android:layout_marginTop="@dimen/activity_vertical_margin">
+
+        <Button
+            android:id="@+id/hots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HOTS" />
+
+        <com.zrp.library.other.BadgeView
+            android:id="@+id/hots_badge"
+            style="@style/badge"
+            android:layout_toRightOf="@+id/hots" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/clear_all"

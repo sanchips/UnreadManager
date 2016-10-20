@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.zrp.library.bean;
+package com.zrp.library.unread;
 
 import org.json.JSONObject;
 

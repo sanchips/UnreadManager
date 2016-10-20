@@ -2,12 +2,11 @@ package com.zrp.unreadmanager;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
-import com.zrp.library.UnreadMgr;
-import com.zrp.library.view.BadgeView;
+import com.zrp.library.unread.UnreadMgr;
+import com.zrp.library.other.BadgeView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -43,28 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initBadge() {
-        //BadgeView的更多用法请参考[https://github.com/stefanjauker/BadgeView]
-        message_badge = new BadgeView(this);
-        message_badge.setTargetView(message);
-
-        looked_me_badge = new BadgeView(this);
-        looked_me_badge.setTargetView(looked_me);
-
-        recent_message_badge = new BadgeView(this);
-        recent_message_badge.setTargetView(recent_message);
-
-        friends_badge = new BadgeView(this);
-        friends_badge.setTargetView(friends);
-
-        news_badge = new BadgeView(this);
-        news_badge.setBadgeGravity(Gravity.RIGHT | Gravity.CENTER_VERTICAL);
-        news_badge.setTargetView(news);
-
-        strangers_badge = new BadgeView(this);
-        strangers_badge.setTargetView(strangers);
-
-        hots_badge = new BadgeView(this);
-        hots_badge.setTargetView(hots);
+        message_badge = (BadgeView) findViewById(R.id.message_badge);
+        looked_me_badge = (BadgeView) findViewById(R.id.looked_me_badge);
+        recent_message_badge = (BadgeView) findViewById(R.id.recent_message_badge);
+        friends_badge = (BadgeView) findViewById(R.id.friends_badge);
+        news_badge = (BadgeView) findViewById(R.id.news_badge);
+        strangers_badge = (BadgeView) findViewById(R.id.strangers_badge);
+        hots_badge = (BadgeView) findViewById(R.id.hots_badge);
     }
 
     private void registerBadge() {

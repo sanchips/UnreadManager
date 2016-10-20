@@ -2,7 +2,7 @@ package com.zrp.unreadmanager;
 
 import android.app.Application;
 
-import com.zrp.library.UnreadMgr;
+import com.zrp.library.unread.UnreadMgr;
 
 /**
  * Created by sanchi3 on 2016/10/19.

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.zrp.library;
+package com.zrp.library.unread;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -21,10 +21,8 @@ import android.util.Log;
 import android.view.View;
 
 import com.google.gson.Gson;
-import com.zrp.library.bean.Unread;
-import com.zrp.library.bean.UnreadMessage;
-import com.zrp.library.utils.PSP;
-import com.zrp.library.view.BadgeView;
+import com.zrp.library.other.PSP;
+import com.zrp.library.other.BadgeView;
 
 import java.util.HashMap;
 import java.util.Map;

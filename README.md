@@ -2,8 +2,12 @@ UnreadManager
 ---
 
 UnreadManager是一个未读消息管理系统，用于在软件中管理添加未读消息的角标。原理是通过SharedPreferences存储未读的消息条数，然后通过该管理类将其展示到界面的角标上。
+
 在使用的时候定义自己的角标层级关系，在修改子级角标的时候，遍历与其级联的父级角标进行修改。所以我们只需要关心无子集的最小元素，并设置其父集即可。
+
 完全由本地维护。在拿到服务器未读消息数更新的时候，本地清除相关类型的存储内容并重新赋值存储内容。
+
+后续再优化里面那个`BadgeView`吧。
 
 ## Use
 1. 设置层级关系：见[Constant.java](./app/src/main/java/com/zrp/unreadmanager/Constant.java)，其中`LOOKED_ME`、`FRIENDS`、`STRANGERS`、`NEWS`均未无子集且有父集的最小元素，需要配置其`parentMap`；其中`HOTS`为无父级的最小元素，所以不需要添加其父级关系。
@@ -13,13 +17,9 @@ UnreadManager是一个未读消息管理系统，用于在软件中管理添加�
     - 添加数字角标：`UnreadMgr.getInstance().addNumUnread(Constant.LOOKED_ME);`
     - 添加文字角标：`UnreadMgr.getInstance().addStringUnread(Constant.NEWS, "Hot news!");`
 
-<video src="./screenshot/record.mp4" controls="controls">Your browser does not support the video tag.</video>
+![](./screenshot/screenshot.gif)
 
 技术渣，欢迎PR和ISSUES。
-
-## Reference
-- [Gson](https://github.com/google/gson)
-- [BadgeView](https://github.com/stefanjauker/BadgeView)
 
 ## Licences
 ```
