@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
-import com.zrp.library.unread.UnreadMgr;
 import com.zrp.library.other.BadgeView;
+import com.zrp.library.unread.UnreadMgr;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 

@@ -21,8 +21,9 @@ import android.util.Log;
 import android.view.View;
 
 import com.google.gson.Gson;
-import com.zrp.library.other.PSP;
+import com.google.gson.reflect.TypeToken;
 import com.zrp.library.other.BadgeView;
+import com.zrp.library.other.PSP;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -67,10 +68,10 @@ public class UnreadMgr {
      * @param storeTag  用户标签。如果切换用户，需要重新调用该方法进行初始化
      * @param parentMap 子级和父级的级联关系。只关心最小元素的子级，如：消息tab中有一个最近消息栏目，最近消息中又包括好友和陌生人，
      *                  这时候好友和陌生人就是最小的元素，由这两个最小元素的添加引起了最近消息和消息总数的添加。<p>
-     *                  Map<String, String[]> parentMap = new HashMap<String, String[]>();<p>
-     *                  parentMap.put("friends",new String[]{"message","recentMessage"});<p>
+     *                  Map<String, String[]> parentMap = new HashMap<String, String[]>();<br>
+     *                  parentMap.put("friends",new String[]{"message","recentMessage"});<br>
      *                  parentMap.put("strangers",new String[]{"message","recentMessage"});<p>
-     *                  这里演示了一个三级标示消息的结构，二级的结构如下：<p>
+     *                  以上演示了一个三级标示消息的结构，二级的结构如下：<br>
      *                  parentMap.put("friends",new String[]{"message","lookedMe"});<p>
      *                  只有一级的标示消息无需添加父级层联关系的map。
      */
@@ -80,7 +81,7 @@ public class UnreadMgr {
         this.parentMap = (parentMap == null ? new HashMap<String, String[]>() : parentMap);
 
         unreadMap.clear();
-        unreadMap = getUnreadMessage().getUnreadMap();
+        unreadMap = getUnreadMessage();
     }
 
     /**
@@ -88,12 +89,12 @@ public class UnreadMgr {
      *
      * @return 存储的未读信息
      */
-    public UnreadMessage getUnreadMessage() {
+    public Map<String, Unread> getUnreadMessage() {
         Log.d(TAG, "getUnreadMessage: --------->stored tag：" + getStoredTag() +
                 "，stored string：" + PSP.getInstance().getString(getStoredTag(), ""));
-        UnreadMessage unreadMessage = new UnreadMessage();
-        unreadMessage.parseJson(PSP.getInstance().getString(getStoredTag(), ""));
-        return unreadMessage;
+        return new Gson().fromJson(PSP.getInstance().getString(getStoredTag(), ""),
+                new TypeToken<Map<String, Unread>>() {
+                }.getType());
     }
 
     /**

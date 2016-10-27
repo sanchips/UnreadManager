@@ -15,27 +15,17 @@
  */
 package com.zrp.library.unread;
 
-import org.json.JSONObject;
-
 /**
  * 未读角标数据解析类
  * Created by sanchi3 on 2016/10/18.
  */
-public class Unread extends BaseData {
+public class Unread {
 
     private String key;     //角标的key值
     private int num;        //角标显示的数字
     private String show;    //角标显示的文字
 
     public Unread() {
-    }
-
-    @Override
-    public void parseJson(String jsonStr) {
-        JSONObject jsonObject = getJsonObject(jsonStr);
-        this.setKey(jsonObject.optString("key"));
-        this.setNum(jsonObject.optInt("num"));
-        this.setShow(jsonObject.optString("show"));
     }
 
     public String getKey() {
