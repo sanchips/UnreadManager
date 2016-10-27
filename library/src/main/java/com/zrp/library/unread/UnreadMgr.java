@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 import com.zrp.library.other.BadgeView;
 import com.zrp.library.other.PSP;
@@ -54,6 +55,8 @@ public class UnreadMgr {
 
     private static final String TAG = "UnreadMgr";
 
+    private Gson gson = new Gson();
+
     /* 消息存储的SP-key，用以区分不同的用户 */
     private String storeTag;
     /* 未读消息的级联关系，每次添加新的层级角标之后在此进行配置 */
@@ -80,21 +83,19 @@ public class UnreadMgr {
         this.storeTag = storeTag;
         this.parentMap = (parentMap == null ? new HashMap<String, String[]>() : parentMap);
 
-        unreadMap.clear();
-        unreadMap = getUnreadMessage();
-    }
+        unreadMap.clear();//应用未杀死时切换用户，清除上个用户的信息
 
-    /**
-     * 从sharedPreferences中读取存储的未读信息
-     *
-     * @return 存储的未读信息
-     */
-    public Map<String, Unread> getUnreadMessage() {
-        Log.d(TAG, "getUnreadMessage: --------->stored tag：" + getStoredTag() +
-                "，stored string：" + PSP.getInstance().getString(getStoredTag(), ""));
-        return new Gson().fromJson(PSP.getInstance().getString(getStoredTag(), ""),
-                new TypeToken<Map<String, Unread>>() {
-                }.getType());
+        String storage_string = PSP.getInstance().getString(getStoredTag(), "");
+        Log.d(TAG, "getUnreadMessage: --------->stored tag：" + getStoredTag() + "，stored string：" + storage_string);
+        if (TextUtils.isEmpty(storage_string)) return;
+
+        try {
+            unreadMap = gson.fromJson(PSP.getInstance().getString(getStoredTag(), ""),
+                    new TypeToken<Map<String, Unread>>() {
+                    }.getType());
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -173,7 +174,7 @@ public class UnreadMgr {
         addParent(unread.getKey());
         Log.d(TAG, "addUnread: --------->unread：" + unread.toString() + "，unreadMap：" + unreadMap.toString());
 
-        PSP.getInstance().put(getStoredTag(), new Gson().toJson(unreadMap));
+        PSP.getInstance().put(getStoredTag(), gson.toJson(unreadMap));
         castUnreadMsg(unread.getKey(), true);
     }
 
@@ -194,7 +195,7 @@ public class UnreadMgr {
         addParent(key);
         Log.d(TAG, "addNumUnread: --------->key：" + key + "，unreadMap：" + unreadMap.toString());
 
-        PSP.getInstance().put(getStoredTag(), new Gson().toJson(unreadMap));
+        PSP.getInstance().put(getStoredTag(), gson.toJson(unreadMap));
         castUnreadMsg(key, true);
     }
 
@@ -217,7 +218,7 @@ public class UnreadMgr {
 
         Log.d(TAG, "addStringUnread: --------->key：" + key + "，unreadMap：" + unreadMap.toString());
 
-        PSP.getInstance().put(getStoredTag(), new Gson().toJson(unreadMap));
+        PSP.getInstance().put(getStoredTag(), gson.toJson(unreadMap));
         castUnreadMsg(key, true);
     }
 
@@ -246,7 +247,7 @@ public class UnreadMgr {
         }
         Log.d(TAG, "reduceUnreadByKey: --------->key：" + key + "，unreadMap：" + unreadMap.toString());
 
-        PSP.getInstance().put(getStoredTag(), new Gson().toJson(unreadMap));
+        PSP.getInstance().put(getStoredTag(), gson.toJson(unreadMap));
         castUnreadMsg(key, false);
     }
 
@@ -262,7 +263,7 @@ public class UnreadMgr {
         unreadMap.remove(key);
         Log.d(TAG, "resetUnreadByKey: --------->key：" + key + "，unreadMap：" + unreadMap.toString());
 
-        PSP.getInstance().put(getStoredTag(), new Gson().toJson(unreadMap));
+        PSP.getInstance().put(getStoredTag(), gson.toJson(unreadMap));
         castUnreadMsg(key, false);
     }
 
@@ -272,7 +273,7 @@ public class UnreadMgr {
     public void resetAllUnread() {
         unreadMap.clear();
         Log.d(TAG, "resetAllUnread: --------->" + unreadMap.toString());
-        PSP.getInstance().put(getStoredTag(), new Gson().toJson(unreadMap));
+        PSP.getInstance().put(getStoredTag(), gson.toJson(unreadMap));
         castUnreadMsg(null, false);
     }
 
