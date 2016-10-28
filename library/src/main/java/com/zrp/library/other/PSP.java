@@ -51,6 +51,7 @@ public class PSP {
 
     /**
      * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法
+     * [注意]value尽量不要传null
      */
     public synchronized void put(String key, Object object) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -65,7 +66,7 @@ public class PSP {
         } else if (object instanceof Long) {
             editor.putLong(key, (Long) object);
         } else {
-            editor.putString(key, object.toString());
+            editor.putString(key, String.valueOf(object));
         }
         editor.apply();
     }
