@@ -60,7 +60,7 @@ public class UnreadMgr {
     /* 消息存储的SP-key，用以区分不同的用户 */
     private String storeTag;
     /* 未读消息的级联关系，每次添加新的层级角标之后在此进行配置 */
-    private Map<String, String[]> parentMap;
+    private Map<String, String[]> parentMap = new HashMap<String, String[]>();
 
     /* 对应未读消息的存储对象 */
     private Map<String, Unread> unreadMap = new HashMap<String, Unread>();
